@@ -72,7 +72,6 @@ int main()
         return -1;
     }
 
-
     // build and compile our shader program
     // ------------------------------------
     // vertex shader
@@ -282,25 +281,30 @@ void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-    
-    if (b->y > aiPaddle->y + aiPaddle->height/2.5f) {
-        aiPaddle->movement(UP, deltaTime);
-    }
-    else if (b->y < aiPaddle->y - aiPaddle->height / 2.5f){
-        aiPaddle->movement(DOWN, deltaTime);
+    if (b->direction < 90.0f && b->direction > -90.0f) {
+        if (b->y > aiPaddle->y) {
+            aiPaddle->movement(UP, deltaTime);
+        }
+        else if (b->y < aiPaddle->y) {
+            aiPaddle->movement(DOWN, deltaTime);
+        }
     }
     else {
-        aiPaddle->velocity = 0;
+        
+        if (b->aiHint - aiPaddle->height / 2.5 > aiPaddle->y) {
+            aiPaddle->movement(UP, deltaTime);
+        }
+        else if (b->aiHint - aiPaddle->height / 2.5 < aiPaddle->y) {
+            aiPaddle->movement(DOWN, deltaTime);
+        }
     }
+    
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
         playerPaddle->movement(UP, deltaTime);
     }
     else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
         playerPaddle->movement(DOWN, deltaTime);
-    }
-    else {
-        playerPaddle->velocity = 0;
     }
 }
 
