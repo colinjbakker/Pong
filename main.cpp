@@ -290,11 +290,10 @@ void processInput(GLFWwindow* window)
         }
     }
     else {
-        
         if (b->aiHint - aiPaddle->height / 2.5 > aiPaddle->y) {
             aiPaddle->movement(UP, deltaTime);
         }
-        else if (b->aiHint - aiPaddle->height / 2.5 < aiPaddle->y) {
+        else if (b->aiHint + aiPaddle->height / 2.5 < aiPaddle->y) {
             aiPaddle->movement(DOWN, deltaTime);
         }
     }

@@ -37,7 +37,6 @@ public:
 		float tx = x;
 		if (td == 180.0f) {
 			aiHint = ty;
-			std::cout << "aiHint: " << aiHint << std::endl;
 			return;
 		}
 		for (int i = 0; i < 5; i++) {
@@ -110,7 +109,6 @@ public:
 		y += (speed * deltaTime) * sin(glm::radians(direction));
 
 		if (x > 1.1f || x < -1.1f) {
-			std::cout << "actual: " << y << std::endl;
 			firstHit = false;
 			speed = 0.8f;
 			x = 0.0f;
